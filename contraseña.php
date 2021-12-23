@@ -1,3 +1,5 @@
 <?php
-echo "hola";
+class GestorContrasenyas{
+    
+}
 ?>
