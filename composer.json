@@ -1,4 +1,12 @@
 {
+    "name": "proveedor/componente",
+    "description": "Proyecto Validacion de Contraseña",
+    "authors": [
+        {
+            "name": "Grupo 5",
+            "email": "201523437i@utea.edu.pe"
+        }
+    ],
     "require-dev": {
         "phpunit/phpunit": "^9.5"
     }
