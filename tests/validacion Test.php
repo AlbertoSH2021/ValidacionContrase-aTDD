@@ -42,7 +42,57 @@ class validacionClaveTest extends TestCase{
       }
       $this->assertEquals("La clave debe tener mas de 20 caracteres",$error_clave);
    }
-   
+   //====================================contraseña Alfanumerico (letras y numeros)
+   public function test_clave_Alfanumerico( $error_clave=''){
+      $clave='ABCDRRRR45arroz';
+      if (!preg_match('`[a-z]`',$clave)){
+         $error_clave = "La clave debe tener al menos una letra minúscula";
+         return false;
+      }
+      if (!preg_match('`[A-Z]`',$clave)){
+         $error_clave = "La clave debe tener al menos una letra mayúscula";
+         return false;
+      }
+      if (!preg_match('`[0-9]`',$clave)){
+         $error_clave = "La clave debe tener al menos un caracter numérico";
+         return false;
+      }
+      else{$error_clave = "PASSWORD VÁLIDO";
+      }
+      // $this->assertEquals("La clave debe tener al menos una letra minúscula",$error_clave);
+      // $this->assertEquals("La clave debe tener al menos un caracter numérico",$error_clave);
+      $this->assertEquals("PASSWORD VÁLIDO",$error_clave);
+    }
+    //====================================contraseña uft8 (Caracteres especiales)
+   public function test_clave_UFT8( $error_clave=''){
+      $clave='45asbdcñ++////';
+      //caracteres especiales
+      /**===================================================================== */
+      if (!preg_match('`[ñÑ/_-áéíóú&\+]`',$clave)){
+      $error_clave = "La clave nesecita caracteres especiales";
+      return false;
+      }
+      else{$error_clave = "PASSWORD VÁLIDO";
+      }
+      // $this->assertEquals("La clave debe tener al menos una letra minúscula",$error_clave);
+      // $this->assertEquals("La clave debe tener al menos un caracter numérico",$error_clave);
+      $this->assertNotEquals("La clave nesecita caracteres especiales",$error_clave);
+    }
+     //====================================contraseña Admite (Espacio o vacio)
+   public function test_clave_Espacio( $error_clave=''){
+      $clave='4  3  45';
+      //espacio vacio
+      /**===================================================================== */
+      if (!preg_match('`[ ]`',$clave)){
+      $error_clave = "La clave nesecita al menos un espacio vacio";
+      return false;
+      }
+      else{$error_clave = "PASSWORD VÁLIDO";
+      }
+       /**===================================================================== */
+      $this->assertEquals("PASSWORD VÁLIDO",$error_clave);
+    }
+
 }
 //vendor/bin/phpunit
 ?> 
